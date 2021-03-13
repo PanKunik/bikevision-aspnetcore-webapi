@@ -70,6 +70,6 @@ jobs:
       with:
         host: ${{ secrets.REMOTE_ADDRESS }}
         username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.PASSWORD }}
+        key: ${{ secrets.PRIVATE_SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: whoami
