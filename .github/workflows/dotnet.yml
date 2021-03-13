@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: builded-project
-        path: $GITHUB_WORKSPACE/BikevisionService/WebAPI
+        path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
   test:
     needs: build
     runs-on: ubuntu-latest
