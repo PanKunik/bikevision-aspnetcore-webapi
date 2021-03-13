@@ -21,10 +21,19 @@ jobs:
       run: dotnet restore /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
     - name: Build
       run: dotnet build /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-restore -c Release
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: builded-project
+        path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Download math result for job 1
+      uses: actions/download-artifact@v2
+      with:
+        name: builded-project
     - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
