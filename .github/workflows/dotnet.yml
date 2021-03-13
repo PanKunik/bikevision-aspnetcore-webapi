@@ -18,14 +18,14 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Restore dependencies
-      run: dotnet restore /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
+      run: dotnet restore $GITHUB_WORKSPACE/BikevisionService/WebAPI
     - name: Build
-      run: dotnet build /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-restore -c Release
+      run: dotnet build $GITHUB_WORKSPACE/BikevisionService/WebAPI --no-restore -c Release
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: builded-project
-        path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
+        path: $GITHUB_WORKSPACE/BikevisionService/WebAPI
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -38,7 +38,7 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Test
-      run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/ --no-build --verbosity normal
+      run: dotnet test $GITHUB_WORKSPACE/ --no-build --verbosity normal
   publish:
     needs: test
     runs-on: ubuntu-latest
@@ -51,9 +51,9 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Publish
-      run: dotnet publish /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/ -o /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/out
+      run: dotnet publish $GITHUB_WORKSPACE/ -o $GITHUB_WORKSPACE/out
     - name: Archive published project
       uses: actions/upload-artifact@v2
       with:
         name: published-project
-        path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/out
+        path: $GITHUB_WORKSPACE/out
