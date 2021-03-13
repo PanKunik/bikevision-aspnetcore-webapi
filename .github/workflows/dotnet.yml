@@ -26,4 +26,4 @@ jobs:
     - name: Test
       run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish
+      run: dotnet publish /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI -o /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI/out
