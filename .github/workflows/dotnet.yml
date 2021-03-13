@@ -38,7 +38,7 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Test
-      run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-build --verbosity normal
+      run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/ --no-build --verbosity normal
   publish:
     needs: test
     runs-on: ubuntu-latest
@@ -47,4 +47,4 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Publish
-      run: dotnet publish /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI -o /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI/out
+      run: dotnet publish /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/ -o /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI/out
