@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
       with:
@@ -23,7 +21,19 @@ jobs:
       run: dotnet restore /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI
     - name: Build
       run: dotnet build /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-restore -c Release
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
     - name: Test
       run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-build --verbosity normal
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
     - name: Publish
       run: dotnet publish /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI -o /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI/out
