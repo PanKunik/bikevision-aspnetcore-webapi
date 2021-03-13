@@ -66,11 +66,12 @@ jobs:
       with:
         name: published-project
     - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.REMOTE_ADDRESS }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.PRIVATE_SSH_KEY }}
         passphrase: ${{ secrets.REMOTE_PASSPHRASE }}
         port: ${{ secrets.REMOTE_PORT }}
-        script: whoami
+        source: cp /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/
+        target: ${{ secrets.REMOTE_TARGET }}
