@@ -22,6 +22,7 @@ jobs:
     - name: Build
       run: dotnet build /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-restore -c Release
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-dotnet@v1
@@ -30,6 +31,7 @@ jobs:
     - name: Test
       run: dotnet test /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/BikevisionService/WebAPI --no-build --verbosity normal
   publish:
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-dotnet@v1
