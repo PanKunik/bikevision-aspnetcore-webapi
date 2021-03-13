@@ -59,7 +59,7 @@ jobs:
         path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/out
   deploy:
     needs: publish
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
     - name: Download published project
       uses: actions/download-artifact@v2
