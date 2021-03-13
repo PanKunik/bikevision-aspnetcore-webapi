@@ -57,3 +57,21 @@ jobs:
       with:
         name: published-project
         path: /home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/out
+  deploy:
+    needs: publish
+    runs-on: ubuntu:latest
+    steps:
+    - name: Download published project
+      uses: actions/download-artifact@v2
+      with:
+        name: published-project
+    - name: Deploy on VPS
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "/home/runner/work/bikevision-aspnetcore-webapi/bikevision-aspnetcore-webapi/"
+          REMOTE_HOST: ${{ secrets.REMOTE_ADDRESS }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
